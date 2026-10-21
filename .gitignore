@@ -1,4 +1,6 @@
 build/
+Drivers/
+.cache/
 *.o
 *.elf
 *.d
