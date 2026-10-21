@@ -1,0 +1,111 @@
+
+There are no discarded input sections
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+SRAM             0x20000000         0x00010000         xrw
+FLASH            0x08000000         0x00040000         xr
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD /tmp/ccKNuMYw.o
+LOAD /tmp/ccYhgR93.o
+                0x20010000                        _estack = (ORIGIN (SRAM) + LENGTH (SRAM))
+
+.isr_vector     0x08000000       0x10
+ *(.isr_vector)
+ .isr_vector    0x08000000       0x10 /tmp/ccYhgR93.o
+                0x08000000                vectors
+
+.text           0x08000010       0xe0
+ *(.text*)
+ .text          0x08000010       0x7c /tmp/ccKNuMYw.o
+                0x08000010                delay
+                0x0800003c                main
+ .text          0x0800008c       0x64 /tmp/ccYhgR93.o
+                0x0800008c                Reset_Handler
+                0x080000e8                Default_Handler
+ *(.rodata*)
+                0x080000f0                        . = ALIGN (0x4)
+                0x080000f0                        _sidata = LOADADDR (.data)
+
+.glue_7         0x080000f0        0x0
+ .glue_7        0x080000f0        0x0 linker stubs
+
+.glue_7t        0x080000f0        0x0
+ .glue_7t       0x080000f0        0x0 linker stubs
+
+.vfp11_veneer   0x080000f0        0x0
+ .vfp11_veneer  0x080000f0        0x0 linker stubs
+
+.v4_bx          0x080000f0        0x0
+ .v4_bx         0x080000f0        0x0 linker stubs
+
+.iplt           0x080000f0        0x0
+ .iplt          0x080000f0        0x0 /tmp/ccKNuMYw.o
+
+.rel.dyn        0x080000f0        0x0
+ .rel.iplt      0x080000f0        0x0 /tmp/ccKNuMYw.o
+
+.data           0x20000000        0x0 load address 0x080000f0
+                0x20000000                        _sdata = .
+ *(.data*)
+ .data          0x20000000        0x0 /tmp/ccKNuMYw.o
+ .data          0x20000000        0x0 /tmp/ccYhgR93.o
+                0x20000000                        . = ALIGN (0x4)
+                0x20000000                        _edata = .
+
+.igot.plt       0x20000000        0x0 load address 0x080000f0
+ .igot.plt      0x20000000        0x0 /tmp/ccKNuMYw.o
+
+.bss            0x20000000        0x0 load address 0x080000f0
+                0x20000000                        _sbss = .
+ *(.bss*)
+ .bss           0x20000000        0x0 /tmp/ccKNuMYw.o
+ .bss           0x20000000        0x0 /tmp/ccYhgR93.o
+ *(COMMON)
+                0x20000000                        . = ALIGN (0x4)
+                0x20000000                        _ebss = .
+OUTPUT(blink.elf elf32-littlearm)
+LOAD linker stubs
+
+.debug_info     0x00000000      0x1ef
+ .debug_info    0x00000000       0xbe /tmp/ccKNuMYw.o
+ .debug_info    0x000000be      0x131 /tmp/ccYhgR93.o
+
+.debug_abbrev   0x00000000      0x168
+ .debug_abbrev  0x00000000       0x8a /tmp/ccKNuMYw.o
+ .debug_abbrev  0x0000008a       0xde /tmp/ccYhgR93.o
+
+.debug_aranges  0x00000000       0x40
+ .debug_aranges
+                0x00000000       0x20 /tmp/ccKNuMYw.o
+ .debug_aranges
+                0x00000020       0x20 /tmp/ccYhgR93.o
+
+.debug_line     0x00000000      0x173
+ .debug_line    0x00000000       0xb1 /tmp/ccKNuMYw.o
+ .debug_line    0x000000b1       0xc2 /tmp/ccYhgR93.o
+
+.debug_str      0x00000000      0x176
+ .debug_str     0x00000000      0x176 /tmp/ccKNuMYw.o
+                                0x150 (size before relaxing)
+ .debug_str     0x00000176      0x19d /tmp/ccYhgR93.o
+
+.comment        0x00000000       0x26
+ .comment       0x00000000       0x26 /tmp/ccKNuMYw.o
+                                 0x27 (size before relaxing)
+ .comment       0x00000026       0x27 /tmp/ccYhgR93.o
+
+.ARM.attributes
+                0x00000000       0x2e
+ .ARM.attributes
+                0x00000000       0x2e /tmp/ccKNuMYw.o
+ .ARM.attributes
+                0x0000002e       0x2e /tmp/ccYhgR93.o
+
+.debug_frame    0x00000000       0x9c
+ .debug_frame   0x00000000       0x54 /tmp/ccKNuMYw.o
+ .debug_frame   0x00000054       0x48 /tmp/ccYhgR93.o
